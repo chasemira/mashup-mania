@@ -9,6 +9,8 @@ from menu_page import main_menu
 from select_artist import select_artist
 import os
 from backend import *
+import time
+from sprite import *
 
 
 #helpers
@@ -109,6 +111,16 @@ class Game:
         self.file_a = "assets/music/player_a.mp3"
         self.file_b = "assets/music/player_b.mp3"
 
+
+        #sprites
+        start_tile_a = self.tiles.inner[0]
+        start_tile_b = self.tiles.inner[-1]
+        self.player_a = PlayerSprite("assets/character_sprites/archer.png", start_tile_a, 0, pygame.K_a, self.tiles, "a", size=(120, 120))
+        self.player_b = PlayerSprite("assets/character_sprites/Hurt.png", start_tile_b, 180, pygame.K_l, self.tiles, "b", size=(120, 120))
+        self.all_sprites = pygame.sprite.Group(self.player_a, self.player_b)
+        self.timer_start = time.time()
+        self.timer_duration = 30  # seconds
+
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -123,6 +135,13 @@ class Game:
     def draw(self):
         self.screen.fill(con.LIGHTGREY)
         self.tiles.draw(self.screen)
+        self.all_sprites.draw(self.screen)  # <-- Draw sprites here!
+        # Draw timer
+        elapsed = int(time.time() - self.timer_start)
+        remaining = max(0, self.timer_duration - elapsed)
+        font = pygame.font.SysFont(None, 60)
+        timer_surf = font.render(f"Time: {remaining}", True, (0,0,0))
+        self.screen.blit(timer_surf, (20, 20))
         pygame.display.update()
 
     def update_music(self):
@@ -136,12 +155,35 @@ class Game:
                 play_preview(self.file_b)
             self.last_music_state = self.current_music_state
 
+    def show_results(self):
+        # Show winner or tie
+        font = pygame.font.SysFont(None, 100)
+        if self.player_a.score > self.player_b.score:
+            text = "Player A Wins!"
+        elif self.player_b.score > self.player_a.score:
+            text = "Player B Wins!"
+        else:
+            text = "It's a Tie!"
+        surf = font.render(text, True, (0,0,0))
+        rect = surf.get_rect(center=(WINDOW_WIDTH//2, WINDOW_HEIGHT//2))
+        self.screen.blit(surf, rect)
+        pygame.display.update()
+        pygame.time.wait(4000)
+
     def main(self):
+        clock = pygame.time.Clock()
         while self.keep_looping:
             self.events()
-            self.update()
+            pressed = pygame.key.get_pressed()
+            self.all_sprites.update(pressed)
             self.update_music()
             self.draw()
+            # Timer
+            elapsed = time.time() - self.timer_start
+            if elapsed >= self.timer_duration:
+                self.show_results()
+                break
+            clock.tick(60)
 
 def quit_game():
     pygame.quit()
