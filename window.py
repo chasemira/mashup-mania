@@ -7,7 +7,7 @@ import os
 from generate_grid import *
 
 TITLE = "Mashup Mania"
-TILES_HORIZONTAL = 9
+TILES_HORIZONTAL = 8
 TILES_VERTICAL = 5
 TILESIZE = 180
 WINDOW_WIDTH = TILESIZE * TILES_HORIZONTAL
