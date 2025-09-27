@@ -1,8 +1,8 @@
 import deezer
 import requests
 
-ARTIST_OPTIONS_A = ['The Weeknd', 'Bruno Mars', 'Rihanna', 'Billie Eilish', 'Taylor Swift']
-ARTIST_OPTIONS_B = ['Arianna Grande', "Sabrina Carpenter", "Olivia Rodrigo", "BTS", "Post Malone"]
+ARTIST_OPTIONS_A = ['Weeknd', 'Bruno Mars', 'Rihanna', 'Billie Eilish', 'Taylor Swift']
+ARTIST_OPTIONS_B = ['Arianna Grande', "Olivia Rodrigo", "Michael Jackson", "Malone", "Sabrina Carpenter"]
 
 def get_top_10_with_covers(artist_name):
     """

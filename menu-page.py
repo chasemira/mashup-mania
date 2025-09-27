@@ -69,7 +69,7 @@ def main_menu():
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        MENU_TEXT = get_font(100).render("MASHUP MANIA", True, "#2761ae")
+        MENU_TEXT = get_font(80).render("MASHUP MANIA", True, "#2761ae")
         MENU_RECT = MENU_TEXT.get_rect(center=(640, 250))
 
         PLAY_BUTTON = Button(image=pygame.image.load("assets/menu/Play Rect.png"), pos=(640, 400), 
