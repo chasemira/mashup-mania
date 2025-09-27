@@ -49,3 +49,13 @@ if __name__ == "__main__":
         for s in songs:
             print(f" - {s['title']} ({s['album_cover']})")
         print()
+
+#function to download a preview of the chosen artist's track
+def download_preview(track_preview_url, save_path):
+    """Download a 30-second Deezer preview."""
+    r = requests.get(track_preview_url)
+    if r.status_code == 200:
+        with open(save_path, 'wb') as f:
+            f.write(r.content)
+        return save_path
+    return None
