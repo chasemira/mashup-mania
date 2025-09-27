@@ -6,8 +6,7 @@ import sys
 import constants as con
 from generate_grid import generante_map_file
 from menu_page import main_menu
-from player_a_selector import player_a_selector
-from player_b_selector import player_b_selector
+from select_artist import select_artist
 import os
 from backend import *
 
@@ -150,13 +149,11 @@ def quit_game():
 
 def start_game_flow(screen):
     # Player A selection
-    player_a = player_a_selector(screen, quit_game)
-    if player_a is None:
-        player_b = player_b_selector(screen, quit_game)
-        if player_b is None:    
-            download_music()
-            game = Game(screen)
-            game.main()
+    player_a = select_artist(screen, player_num=1, quit_callback=quit_game)
+    player_b = select_artist(screen, player_num=2, quit_callback=quit_game)
+    download_music()
+    game = Game(screen)
+    game.main()
 
 def main():
     pygame.init()
