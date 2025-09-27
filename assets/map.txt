@@ -1,5 +1,5 @@
-b;n;n;n;n;n;n;a
-b;n;b;n;a;n;n;a
-n;n;n;n;n;n;n;b
-n;b;a;n;b;n;a;n
-b;n;n;b;a;b;n;n
+n;n;a;n;n;a;n;n
+a;n;n;b;a;a;b;n
+b;b;n;n;n;n;n;n
+n;n;n;b;n;n;n;a
+n;b;n;n;n;b;a;n

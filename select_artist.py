@@ -92,14 +92,17 @@ class ArtistCircle:
 
 def get_artist_positions(screen_w, screen_h):
     positions = []
-    top_y = int(screen_h * 0.35)
-    top_spacing = screen_w // 4
+    # Top row (3 artists) - closer spacing
+    top_y = int(screen_h * 0.4)  # Moved down slightly
+    top_spacing = screen_w // 5  # Reduced from 4 to 5 for closer spacing
     top_start_x = (screen_w // 2) - top_spacing
     for i in range(3):
         x = top_start_x + i * top_spacing
         positions.append((x, top_y))
-    bottom_y = int(screen_h * 0.55)
-    bottom_spacing = screen_w // 3
+    
+    # Bottom row (2 artists) - closer spacing
+    bottom_y = int(screen_h * 0.65)  # Moved down
+    bottom_spacing = screen_w // 4  # Reduced from 3 to 4 for closer spacing
     bottom_start_x = (screen_w // 2) - bottom_spacing // 2
     for i in range(2):
         x = bottom_start_x + i * bottom_spacing
@@ -110,8 +113,8 @@ def select_artist(screen, player_num, quit_callback):
     """Show artist selection for one player, return chosen artists."""
     screen_w, screen_h = screen.get_size()
 
-    # Dynamic scaling
-    base_size = screen_w // 12
+    # Dynamic scaling - made images bigger
+    base_size = screen_w // 9  # Changed from 12 to 9 for bigger images
     radius = base_size // 2
     font_size = screen_w // 60
 
@@ -127,7 +130,7 @@ def select_artist(screen, player_num, quit_callback):
 
     next_button = Button(
         image=None,
-        pos=(screen_w // 2, int(screen_h * 0.8)),
+        pos=(screen_w // 2, int(screen_h * 0.85)),  # Moved button down
         text_input="NEXT",
         font=get_font(screen_w // 30),
         base_color="White",
@@ -149,11 +152,11 @@ def select_artist(screen, player_num, quit_callback):
         screen.blit(get_font(screen_w // 15).render(f"Player {player_num}", True, "#000000"), (title_rect.x+2, title_rect.y+2))
         screen.blit(title_text, title_rect)
 
-        # Instructions
+        # Instructions - moved down
         selected_count = sum(1 for c in artist_circles if c.selected)
         instruction_color = "#00ff64" if selected_count == 2 else "#ffffff"
         instruction_text = get_font(screen_w // 30).render(f"Select 2 Artists ({selected_count}/2)", True, instruction_color)
-        instruction_rect = instruction_text.get_rect(center=(screen_w // 2, screen_h // 6))
+        instruction_rect = instruction_text.get_rect(center=(screen_w // 2, screen_h // 4))  # Changed from 6 to 4
         screen.blit(instruction_text, instruction_rect)
 
         # Draw circles
