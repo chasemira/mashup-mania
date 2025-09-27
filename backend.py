@@ -1,7 +1,8 @@
 import deezer
 import requests
 
-ARTIST_OPTIONS = ['The Weeknd', 'Bruno Mars', 'Rihanna', 'Billie Eilish', 'Taylor Swift']
+ARTIST_OPTIONS_A = ['The Weeknd', 'Bruno Mars', 'Rihanna', 'Billie Eilish', 'Taylor Swift']
+ARTIST_OPTIONS_B = ['Arianna Grande', "Sabrina Carpenter", "Olivia Rodrigo", "BTS", "Post Malone"]
 
 def get_top_10_with_covers(artist_name):
     """
@@ -33,10 +34,17 @@ def get_top_10_with_covers(artist_name):
     return tracks_with_covers
 
 # Build SONG_OPTIONS dict
-SONG_OPTIONS = {artist: get_top_10_with_covers(artist)[:5] for artist in ARTIST_OPTIONS}
+SONG_OPTIONS_A = {artist: get_top_10_with_covers(artist)[:5] for artist in ARTIST_OPTIONS_A}
+SONG_OPTIONS_B = {artist: get_top_10_with_covers(artist)[:5] for artist in ARTIST_OPTIONS_B}
 
 if __name__ == "__main__":
-    for artist, songs in SONG_OPTIONS.items():
+    for artist, songs in SONG_OPTIONS_A.items():
+        print(f"{artist}:")
+        for s in songs:
+            print(f" - {s['title']} ({s['album_cover']})")
+        print()
+
+    for artist, songs in SONG_OPTIONS_B.items():
         print(f"{artist}:")
         for s in songs:
             print(f" - {s['title']} ({s['album_cover']})")
