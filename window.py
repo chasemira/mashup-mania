@@ -193,7 +193,8 @@ def start_game_flow(screen):
     # Player A selection
     player_a = select_artist(screen, player_num=1, quit_callback=quit_game)
     player_b = select_artist(screen, player_num=2, quit_callback=quit_game)
-    download_music()
+    download_preview(player_a, 'assets/music/player_a.mp3')
+    download_preview(player_b, 'assets/music/player_b.mp3')
     game = Game(screen)
     game.main()
 
