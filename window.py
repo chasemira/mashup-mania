@@ -119,8 +119,8 @@ class Game:
         #sprites
         start_tile_a = self.tiles.inner[0]
         start_tile_b = self.tiles.inner[-1]
-        self.player_a = PlayerSprite("assets/character_sprites/archer.png", start_tile_a, 0, pygame.K_a, self.tiles, "a", size=(120, 120))
-        self.player_b = PlayerSprite("assets/character_sprites/Hurt.png", start_tile_b, 180, pygame.K_l, self.tiles, "b", size=(120, 120))
+        self.player_a = PlayerSprite("assets/character_sprites/girl2.png", start_tile_a, 0, pygame.K_a, self.tiles, "a", size=(120, 120))
+        self.player_b = PlayerSprite("assets/character_sprites/guy1.png", start_tile_b, 180, pygame.K_l, self.tiles, "b", size=(120, 120))
         self.all_sprites = pygame.sprite.Group(self.player_a, self.player_b)
         self.timer_start = time.time()
         self.timer_duration = 30  # seconds
