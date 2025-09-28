@@ -16,7 +16,7 @@ def main_menu(screen, play_callback, quit_callback):
         MENU_MOUSE_POS = pygame.mouse.get_pos()
         
         # Center the title text based on screen size
-        MENU_TEXT = get_font(100).render("MASHUP MANIA", True, "#007bff")
+        MENU_TEXT = get_font(100).render("MUSIC MANIA", True, "#007bff")
         MENU_RECT = MENU_TEXT.get_rect(center=(screen_width // 2, screen_height // 3))
         
         # Center buttons based on screen size

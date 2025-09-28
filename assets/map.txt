@@ -1,0 +1,5 @@
+n;b;n;n;a;n;b;n
+n;b;n;b;a;n;n;n
+n;b;n;n;n;a;n;n
+n;n;n;b;b;n;n;n
+n;b;a;n;n;b;b;n

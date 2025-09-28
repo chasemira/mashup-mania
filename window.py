@@ -26,7 +26,7 @@ def play_preview(file_path):
 def download_music():
     pass
 
-TITLE = "Mashup Mania"
+TITLE = "Music Mania"
 TILES_HORIZONTAL = 8
 TILES_VERTICAL = 5
 TILESIZE = 180
