@@ -176,6 +176,11 @@ class Game:
             self.events()
             pressed = pygame.key.get_pressed()
             self.all_sprites.update(pressed)
+
+            for player in [self.player_a, self.player_b]:
+                if getattr(player, "music_request", None):
+                    self.current_music_state = player.music_request
+                    player.music_request = None  # Reset after handling
             self.update_music()
             self.draw()
             # Timer
