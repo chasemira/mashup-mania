@@ -8,7 +8,7 @@ def main_menu(screen, play_callback, quit_callback):
     screen_width, screen_height = screen.get_size()
     
     # Load and scale background to fit screen
-    BG = pygame.image.load("assets/menu/Background.png")
+    BG = pygame.image.load("assets/menu/backgroundNEW.jpg")
     BG = pygame.transform.scale(BG, (screen_width, screen_height))
     
     while True:
