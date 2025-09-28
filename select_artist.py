@@ -3,7 +3,7 @@ from assets.menu.button import Button
 from backend import ARTIST_OPTIONS_A, ARTIST_OPTIONS_B
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-BG = pygame.image.load(os.path.join(CURRENT_DIR, "assets", "menu", "Background.png"))
+BG = pygame.image.load(os.path.join(CURRENT_DIR, "assets", "menu", "backgroundNEW.jpg"))
 
 def get_font(size):
     return pygame.font.Font(os.path.join(CURRENT_DIR, "assets", "menu", "font.ttf"), size)
@@ -56,7 +56,8 @@ class ArtistCircle:
     def draw(self, screen, font_size):
         if self.selected:
             pulse_intensity = 0.7 + 0.3 * math.sin(self.pulse_offset)
-            border_color = (int(0 * pulse_intensity), int(255 * pulse_intensity), int(100 * pulse_intensity))
+            # border_color = (int(0 * pulse_intensity), int(255 * pulse_intensity), int(100 * pulse_intensity))
+            border_color = (int(0 * pulse_intensity), int(100 * pulse_intensity), int(255 * pulse_intensity))
             border_size = int(self.radius * 2.1)
             border_rect = pygame.Rect(0, 0, border_size, border_size)
             border_rect.center = self.pos
@@ -134,7 +135,7 @@ def select_artist(screen, player_num, quit_callback):
         text_input="NEXT",
         font=get_font(screen_w // 30),
         base_color="White",
-        hovering_color="Green"
+        hovering_color="Blue"
     )
 
     clock = pygame.time.Clock()
@@ -154,7 +155,8 @@ def select_artist(screen, player_num, quit_callback):
 
         # Instructions - moved down
         selected_count = sum(1 for c in artist_circles if c.selected)
-        instruction_color = "#00ff64" if selected_count == 2 else "#ffffff"
+        # instruction_color = "#00ff64" if selected_count == 2 else "#ffffff"
+        instruction_color = "#007bff" if selected_count == 2 else "#ffffff"
         instruction_text = get_font(screen_w // 30).render(f"Select 2 Artists ({selected_count}/2)", True, instruction_color)
         instruction_rect = instruction_text.get_rect(center=(screen_w // 2, screen_h // 4))  # Changed from 6 to 4
         screen.blit(instruction_text, instruction_rect)

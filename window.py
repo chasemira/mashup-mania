@@ -159,20 +159,60 @@ class Game:
                 play_preview(self.file_b)
             self.last_music_state = self.current_music_state
 
+    # def show_results(self):
+    #     # Show winner or tie
+    #     font = pygame.font.SysFont(None, 100)
+    #     if self.player_a.score > self.player_b.score:
+    #         text = "Player A Wins!"
+    #     elif self.player_b.score > self.player_a.score:
+    #         text = "Player B Wins!"
+    #     else:
+    #         text = "It's a Tie!"
+    #     surf = font.render(text, True, (0,0,0))
+    #     rect = surf.get_rect(center=(WINDOW_WIDTH//2, WINDOW_HEIGHT//2))
+    #     self.screen.blit(surf, rect)
+    #     pygame.display.update()
+    #     pygame.time.wait(4000)
+
     def show_results(self):
-        # Show winner or tie
-        font = pygame.font.SysFont(None, 100)
+        # Semi-transparent pop-up rectangle
+        popup_width, popup_height = 800, 400
+        popup_x = (WINDOW_WIDTH - popup_width) // 2
+        popup_y = (WINDOW_HEIGHT - popup_height) // 2
+
+        # Create a surface for the popup
+        popup_surf = pygame.Surface((popup_width, popup_height))
+        popup_surf.set_alpha(230)  # semi-transparent
+        popup_surf.fill((0, 0, 0))  # dark grey background
+
+        # Draw border (pixelated / "gamey")
+        border_color = (255, 255, 255)  # yellow border
+        border_thickness = 6
+        pygame.draw.rect(popup_surf, border_color, popup_surf.get_rect(), border_thickness)
+
+        # Decide winner text
         if self.player_a.score > self.player_b.score:
             text = "Player A Wins!"
         elif self.player_b.score > self.player_a.score:
             text = "Player B Wins!"
         else:
             text = "It's a Tie!"
-        surf = font.render(text, True, (0,0,0))
-        rect = surf.get_rect(center=(WINDOW_WIDTH//2, WINDOW_HEIGHT//2))
-        self.screen.blit(surf, rect)
+
+        # Render the text (big pixel font optional)
+        font = pygame.font.Font("assets/menu/font.ttf")
+        text_surf = font.render(text, True, (255, 255, 255))
+        text_rect = text_surf.get_rect(center=(popup_width//2, popup_height//2))
+
+        # Blit text onto popup
+        popup_surf.blit(text_surf, text_rect)
+
+        # Blit popup onto main screen
+        self.screen.blit(popup_surf, (popup_x, popup_y))
         pygame.display.update()
+
+        # Pause to let player read
         pygame.time.wait(4000)
+
 
     def main(self):
         clock = pygame.time.Clock()
