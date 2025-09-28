@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 n;a;n;a;n;b;n;n
 n;a;n;b;n;n;a;b
 n;n;a;n;n;n;n;a
 n;n;n;n;a;n;b;a
 n;a;n;n;n;a;n;b
+=======
+b;b;a;n;a;b;b;n
+n;n;b;n;n;n;n;a
+a;n;b;n;n;n;b;n
+n;b;n;a;n;a;a;a
+n;n;n;a;b;n;n;b
+>>>>>>> dbf48e93625ebfd2c788550320a05e70a20cd667

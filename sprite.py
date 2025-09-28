@@ -35,4 +35,6 @@ class PlayerSprite(pygame.sprite.Sprite):
                     self.rect = self.image.get_rect(center=t.rect.center)
                     if t.kind_of_tile == self.kind:
                         self.score += 1
+                        self.music_request = f'player_{self.kind}'
+
                     break
