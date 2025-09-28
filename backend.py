@@ -1,8 +1,9 @@
 import deezer
+import os
 import requests
 
 ARTIST_OPTIONS_A = ['Weeknd', 'Bruno Mars', 'Rihanna', 'Billie Eilish', 'Taylor Swift']
-ARTIST_OPTIONS_B = ['Arianna Grande', "Olivia Rodrigo", "Michael Jackson", "Malone", "Sabrina Carpenter"]
+ARTIST_OPTIONS_B = ['Arianna', "Olivia", "Michael", "Malone", "Sabrina"]
 
 def get_top_10_with_covers(artist_name):
     """
@@ -72,16 +73,40 @@ def download_preview(artists, save_path):
         print("Failed to download preview.")
         return None
 
-if __name__ == "__main__":
-    for artist, songs in SONG_OPTIONS_A.items():
-        print(f"{artist}:")
-        for s in songs:
-            print(f" - {s['title']} ({s['album_cover']})")
-        print()
+def set_cover(player_x, type, save_dir="assets/album-covers"):
+    main_artist = player_x[0]
 
-    for artist, songs in SONG_OPTIONS_B.items():
-        print(f"{artist}:")
-        for s in songs:
-            print(f" - {s['title']} ({s['album_cover']})")
-        print()
+    # Pick the right dictionary
+    if main_artist in SONG_OPTIONS_A:
+        cover_url = SONG_OPTIONS_A[main_artist][0]["album_cover"]
+    else:
+        cover_url = SONG_OPTIONS_B[main_artist][0]["album_cover"]
+
+    # Save path (e.g. assets/covers/Weeknd.jpg)
+    safe_name = f"player_{type}"
+    save_path = os.path.join(save_dir, f"{safe_name}.jpg")
+
+    # Download the image
+    r = requests.get(cover_url)
+    if r.status_code == 200:
+        with open(save_path, "wb") as f:
+            f.write(r.content)
+        return save_path
+    else:
+        raise ValueError(f"Could not download cover for {main_artist} from {cover_url}")
+if __name__ == "__main__":
+    # for artist, songs in SONG_OPTIONS_A.items():
+    #     print(f"{artist}:")
+    #     for s in songs:
+    #         print(f" - {s['title']} ({s['album_cover']})")
+    #     print()
+
+    # for artist, songs in SONG_OPTIONS_B.items():
+    #     print(f"{artist}:")
+    #     for s in songs:
+    #         print(f" - {s['title']} ({s['album_cover']})")
+    #     print()
+
+    player_a = ""
+    set_cover(player_a, ["The Weeknd", "Taylor Swift"])
 

@@ -47,8 +47,8 @@ TEAL = (  0, 128, 128)
 # LIGHT_BLUE_CHECKER_CROWNED = "light_blue_crowned_checker.png"
 # RED_CHECKER_CROWNED = "red_checker_crowned.png"
 # BLUE_CHECKER_CROWNED = "blue_crowned_checker.png"
-ALBUM_A = "weeknd.jpg"
-ALBUM_B = "billie.jpg"
+ALBUM_A = "player_a.jpg"
+ALBUM_B = "player_b.jpg"
 NEUTRAL = "neutral.png"
 # Example: build album cover dict from SONG_OPTIONS
 # ALBUM_COVERS_A = {artist: songs[0]['album_cover'] for artist, songs in SONG_OPTIONS_A.items() if songs}

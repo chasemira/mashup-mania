@@ -12,6 +12,10 @@ from backend import *
 import time
 from sprite import *
 
+PLAYER_A_COVER = "assets/album-covers/eternalSunshine-ariana.jpg"
+PLAYER_B_COVER = "assets/album-covers/starboy-weeknd.jpg"
+
+
 
 #helpers
 def play_preview(file_path):
@@ -47,7 +51,7 @@ class Tile:
         else: raise ValueError("Error! kind of tile: ", kind_of_tile)
         # ---------------------
         self.rect = pygame.Rect(self.x * TILESIZE, self.y * TILESIZE, TILESIZE, TILESIZE)
-        image_path = "assets/images"
+        image_path = "assets/album-covers"
         self.image = pygame.image.load(os.path.join(image_path, filename)).convert_alpha()
         self.image = pygame.transform.scale(self.image, (TILESIZE, TILESIZE))
 
@@ -200,6 +204,9 @@ def start_game_flow(screen):
     player_b = select_artist(screen, player_num=2, quit_callback=quit_game)
     download_preview(player_a, 'assets/music/player_a.mp3')
     download_preview(player_b, 'assets/music/player_b.mp3')
+
+    set_cover(player_a, type="a")
+    set_cover(player_b, type="b")
     game = Game(screen)
     game.main()
 
