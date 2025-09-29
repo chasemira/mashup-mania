@@ -119,11 +119,11 @@ class Game:
         #sprites
         start_tile_a = self.tiles.inner[0]
         start_tile_b = self.tiles.inner[-1]
-        self.player_a = PlayerSprite("assets/character_sprites/archer.png", start_tile_a, 0, pygame.K_a, self.tiles, "a", size=(120, 120))
-        self.player_b = PlayerSprite("assets/character_sprites/Hurt.png", start_tile_b, 180, pygame.K_l, self.tiles, "b", size=(120, 120))
+        self.player_a = PlayerSprite("assets/character_sprites/girl2.png", start_tile_a, 0, pygame.K_a, self.tiles, "a", size=(120, 120))
+        self.player_b = PlayerSprite("assets/character_sprites/guy1.png", start_tile_b, 180, pygame.K_l, self.tiles, "b", size=(120, 120))
         self.all_sprites = pygame.sprite.Group(self.player_a, self.player_b)
         self.timer_start = time.time()
-        self.timer_duration = 30  # seconds
+        self.timer_duration = 40  # seconds
 
     def events(self):
         for event in pygame.event.get():
@@ -144,7 +144,7 @@ class Game:
         elapsed = int(time.time() - self.timer_start)
         remaining = max(0, self.timer_duration - elapsed)
         font = pygame.font.SysFont(None, 60)
-        timer_surf = font.render(f"Time: {remaining}", True, (0,0,0))
+        timer_surf = font.render(f"Time: {remaining}", True, (225,225,106))
         self.screen.blit(timer_surf, (20, 20))
         pygame.display.update()
 
@@ -158,21 +158,6 @@ class Game:
             else:
                 play_preview(self.file_b)
             self.last_music_state = self.current_music_state
-
-    # def show_results(self):
-    #     # Show winner or tie
-    #     font = pygame.font.SysFont(None, 100)
-    #     if self.player_a.score > self.player_b.score:
-    #         text = "Player A Wins!"
-    #     elif self.player_b.score > self.player_a.score:
-    #         text = "Player B Wins!"
-    #     else:
-    #         text = "It's a Tie!"
-    #     surf = font.render(text, True, (0,0,0))
-    #     rect = surf.get_rect(center=(WINDOW_WIDTH//2, WINDOW_HEIGHT//2))
-    #     self.screen.blit(surf, rect)
-    #     pygame.display.update()
-    #     pygame.time.wait(4000)
 
     def show_results(self):
         # Semi-transparent pop-up rectangle
@@ -199,7 +184,7 @@ class Game:
             text = "It's a Tie!"
 
         # Render the text (big pixel font optional)
-        font = pygame.font.Font("assets/menu/font.ttf")
+        font = pygame.font.Font("assets/menu/font.ttf", 50)
         text_surf = font.render(text, True, (255, 255, 255))
         text_rect = text_surf.get_rect(center=(popup_width//2, popup_height//2))
 
