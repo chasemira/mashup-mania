@@ -1,1 +1,1 @@
-# mashup-mania
+# Music Mania 
